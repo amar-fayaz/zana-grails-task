@@ -1,10 +1,11 @@
 package coding.challenge
 
-class Entity {
+class Content {
     String title
     String description
 
-    static hasMany = [contents: Content]
+    static hasOne = [entity: Entity]
+    static belongsTo = Entity
 
     static constraints = {
         title blank:false, unique:true
