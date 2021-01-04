@@ -8,7 +8,7 @@ class UrlMappings {
                 // apply constraints here
             }
         }
-
+        "/entities"(resources:"EntityRest")
         "/"(view:"/index")
         "500"(view:'/error')
         "404"(view:'/notFound')
