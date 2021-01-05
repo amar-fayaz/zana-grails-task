@@ -9,6 +9,7 @@ class UrlMappings {
             }
         }
         "/entities"(resources:"EntityRest")
+        "/contents"(resources:"ContentRest")
         "/"(view:"/index")
         "500"(view:'/error')
         "404"(view:'/notFound')
