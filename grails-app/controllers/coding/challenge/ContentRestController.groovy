@@ -16,9 +16,16 @@ class ContentRestController extends RestfulController {
         if (paramsObj.entity) {
             if (paramsObj.entity.title){
                 String titleVal = paramsObj.entity.title
-                paramsObj.entity = Entity.findByTitle(titleVal)
-                if (!paramsObj.entity){
-                    response.sendError(400, "Cannot find entity with the title ${titleVal}")
+                Entity returnVal = Entity.findByTitle(titleVal)
+
+                if (!returnVal){
+                    if (request.method == "POST" || request.method == "PUT"){
+                        paramsObj.entity = new Entity(paramsObj.entity).save(failOnError:"true")
+                    } else {
+                        response.sendError(400, "Cannot find entity with the title ${titleVal}")
+                    }
+                } else {
+                    paramsObj.entity = returnVal
                 }
             }
         }

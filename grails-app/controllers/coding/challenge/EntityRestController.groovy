@@ -13,7 +13,6 @@ class EntityRestController extends RestfulController{
     @Override
     def getObjectToBind() {
         Map paramsObj = JSON.parse(request)
-        println paramsObj.dump()
         if (paramsObj.contents) {
             for (int i=0; i<paramsObj.contents.size();i++){
                 if (paramsObj.contents[i].title){
@@ -22,7 +21,7 @@ class EntityRestController extends RestfulController{
                     
                     if (!returnVal){
                         if (request.method == "POST" || request.method == "PUT"){
-                            paramsObj.contents[i] = new Content(paramsObj.contents[i])
+                            paramsObj.contents[i] = new Content(paramsObj.contents[i]).save(failOnError:"true")
                         } else {
                             response.sendError(400, "Cannot find entity with the title ${titleVal}")
                         }
