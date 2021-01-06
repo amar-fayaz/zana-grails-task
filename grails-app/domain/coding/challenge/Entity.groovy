@@ -4,7 +4,7 @@ class Entity {
     String title
     String description
 
-    static hasMany = [contents: Content]
+    static hasMany = [contents: Content, synonyms: Synonym]
 
     static constraints = {
         title blank:false, unique:true

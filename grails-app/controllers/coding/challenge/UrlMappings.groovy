@@ -10,6 +10,7 @@ class UrlMappings {
         }
         "/entities"(resources:"EntityRest")
         "/contents"(resources:"ContentRest")
+        "/synonyms"(resources:"SynonymRest")
         "/"(view:"/index")
         "500"(view:'/error')
         "404"(view:'/notFound')

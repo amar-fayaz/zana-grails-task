@@ -31,6 +31,25 @@ class EntityRestController extends RestfulController{
                 }
             }
         }
+
+        if (paramsObj.synonyms) {
+            for (int i=0; i<paramsObj.synonyms.size();i++){
+                if (paramsObj.synonyms[i].name){
+                    String nameVal = paramsObj.synonyms[i].name
+                    Synonym returnVal = Synonym.findByName(nameVal)
+                    
+                    if (!returnVal){
+                        if (request.method == "POST" || request.method == "PUT"){
+                            paramsObj.synonyms[i] = new Synonym(paramsObj.synonyms[i]).save(failOnError:"true")
+                        } else {
+                            response.sendError(400, "Cannot find entity with the title ${nameVal}")
+                        }
+                    } else {
+                        paramsObj.synonyms[i] = returnVal
+                    }
+                }
+            }
+        }
         paramsObj
     }
 }
