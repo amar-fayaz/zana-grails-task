@@ -66,4 +66,5 @@ Known Issues
 ------------
 1. Multiple links for scaffold and REST
 2. Adding Items via the scaffold view works inconsistently, with genres not showing up. (Investigated and found that the many to many mapping between Genre and Author is the issue. Haven't found a fix yet. The Genres will show up and work perfectly when added from the REST APIs)
+3. Tried playing around with Authentication using the `spring-security-core`. Worked well with the scaffold view but authentication via REST API did not work.
 
